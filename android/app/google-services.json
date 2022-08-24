@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "13431814013",
+    "project_id": "smart-dust-bin-ad39e",
+    "storage_bucket": "smart-dust-bin-ad39e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13431814013:android:b5090e5be7c8e5426abe14",
+        "android_client_info": {
+          "package_name": "com.ksp.smart_dust_bin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13431814013-cqlmeb5re2gaetc4uurjkgrneaa6fv29.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ksp.smart_dust_bin",
+            "certificate_hash": "0d39c18c4144fb2e2e04a2aec2828314645fac4f"
+          }
+        },
+        {
+          "client_id": "13431814013-vr1lr2fclm6vje5khsdtctisdkt82ert.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRxkJGHP10VXMylRxAvwe5GprhIyJ6wvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13431814013-vr1lr2fclm6vje5khsdtctisdkt82ert.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
