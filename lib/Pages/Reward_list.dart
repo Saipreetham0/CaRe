@@ -77,6 +77,8 @@ class _RewardListState extends State<RewardList> {
                   shrinkWrap: true,
                   padding: EdgeInsets.all(6),
                   scrollDirection: Axis.vertical,
+
+                  
                 ),
               ],
             ),
