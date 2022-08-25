@@ -37,15 +37,18 @@ class _SplashState extends State<Splash> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Image.asset(
-            //   'assets/Learn-to-earn-logo.png',
-            //   height: 200,
-            //   width: 200,
-            // ),
+            Image.asset(
+              'assets/recycle-bin.png',
+              width: 200,
+              height: 200,
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Text(
-              'C a R e',
+              'C A R E',
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 35,
                 fontWeight: FontWeight.bold,
               ),
             )

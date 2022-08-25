@@ -15,7 +15,12 @@ class Dashbard extends StatefulWidget {
 
 class _DashbardState extends State<Dashbard> {
   int _selectedIndex = 0;
-  final List<Widget> _pages = [HomePage(), RewardList(), ProfilePage()];
+  final List<Widget> _pages = [
+    HomePage(),
+    QRViewExample(),
+    RewardList(),
+    ProfilePage()
+  ];
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -25,15 +30,15 @@ class _DashbardState extends State<Dashbard> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: _pages[_selectedIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const QRViewExample(),
-          ));
-        },
-        child: Icon(Icons.qr_code_scanner_outlined),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).push(MaterialPageRoute(
+      //       builder: (context) => const QRViewExample(),
+      //     ));
+      //   },
+      //   child: Icon(Icons.qr_code_scanner_outlined),
+      // ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: Container(
         color: Colors.black,
         child: Padding(
@@ -56,17 +61,16 @@ class _DashbardState extends State<Dashbard> {
                 icon: Icons.home,
                 text: 'Home',
               ),
-              // GButton(
-              //   icon: Icons.qr_code_scanner_outlined,
-              //   text: 'Scan Qr',
-              //
-              // ),
+              GButton(
+                icon: Icons.qr_code_scanner_outlined,
+                text: 'Scan Qr',
+              ),
               GButton(
                 icon: Icons.card_giftcard,
                 text: 'Rewards',
               ),
               GButton(
-                icon: Icons.contact_page_rounded,
+                icon: Icons.person,
                 text: 'Profile',
               ),
             ],

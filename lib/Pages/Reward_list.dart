@@ -52,7 +52,7 @@ class _RewardListState extends State<RewardList> {
 
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -77,8 +77,6 @@ class _RewardListState extends State<RewardList> {
                   shrinkWrap: true,
                   padding: EdgeInsets.all(6),
                   scrollDirection: Axis.vertical,
-
-                  
                 ),
               ],
             ),
