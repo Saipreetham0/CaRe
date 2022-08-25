@@ -55,10 +55,16 @@ class _DashbardState extends State<Dashbard> {
                 icon: Icons.home,
                 text: 'Home',
               ),
+              // GButton(
+              //   icon: Icons.qr_code_scanner_outlined,
+              //   text: 'Scan Qr',
+              //
+              // ),
               GButton(
                 icon: Icons.card_giftcard,
                 text: 'Rewards',
               ),
+              GButton(icon: Icons.contact_mail, text: 'Profile',),
             ],
           ),
         ),

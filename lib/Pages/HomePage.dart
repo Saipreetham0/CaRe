@@ -10,12 +10,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-  
- 
-
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,13 +18,11 @@ class _HomePageState extends State<HomePage> {
         //   title: Text('Home Page'),
         // ),
         body: SafeArea(
-          
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.start,
           //crossAxisAlignment: CrossAxisAlignment.center,
-          
 
           children: [
             Padding(
@@ -42,8 +34,8 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       SizedBox(
-              height: 50,
-            ),
+                        height: 50,
+                      ),
                       Text(
                         'Welcome back, \n User',
                         style: TextStyle(
