@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,29 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+final user = _auth.currentUser;
+
+final db = FirebaseFirestore.instance.collection('users').doc(user!.uid);
+
+@override
+void initState() {
+  print('ksp');
+  //
+  // db.get().then((DocumentSnapshot documentSnapshot) {
+  //   if (documentSnapshot.exists) {
+  //     print('Document data: ${documentSnapshot.data()}');
+  //   } else {
+  //     print('Document does not exist on the database');
+  //   }
+  // });
+}
+
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        // appBar: AppBar(
-        //   title: Text('Home Page'),
-        // ),
         body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
@@ -33,12 +49,12 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Text(
-                        'Welcome back, \n User',
-                        style: TextStyle(
+                        'Welcome back, \n ${user!.displayName}',
+                        style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),

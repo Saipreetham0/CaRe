@@ -5,7 +5,6 @@ import 'package:smart_dust_bin/Pages/Dashboard.dart';
 import 'package:smart_dust_bin/login/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 import 'package:url_launcher/url_launcher.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -107,6 +106,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final uid = "";
 
+  final user = FirebaseAuth.instance.currentUser;
+
   registration() async {
     if (password == confirmPassword) {
       try {
@@ -124,6 +125,8 @@ class _SignUpPageState extends State<SignUpPage> {
             //'category': _selected,
           });
         });
+
+        await user?.updateDisplayName(name);
 
         //print(userCredential);
         ScaffoldMessenger.of(context).showSnackBar(
@@ -202,14 +205,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: 130,
                   width: 100,
                 ),
-                Text(
+                const Text(
                   'Create a New Account',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
@@ -219,7 +222,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextFormField(
                     controller: nameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Name',
                       //errorText: 'Error message',
                       border: OutlineInputBorder(),
@@ -234,7 +237,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 //email text controller
@@ -243,7 +246,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
                     controller: emailController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       //errorText: 'Error message',
                       border: OutlineInputBorder(),

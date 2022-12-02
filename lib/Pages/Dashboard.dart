@@ -17,7 +17,7 @@ class _DashbardState extends State<Dashbard> {
   int _selectedIndex = 0;
   final List<Widget> _pages = [
     HomePage(),
-    QRViewExample(),
+    const QRViewExample(),
     RewardList(),
     ProfilePage()
   ];
@@ -30,6 +30,37 @@ class _DashbardState extends State<Dashbard> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: _pages[_selectedIndex],
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: const <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Messages'),
+            ),
+            ListTile(
+              leading: Icon(Icons.account_circle),
+              title: Text('Profile'),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+            ),
+          ],
+        ),
+      ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
       //     Navigator.of(context).push(MaterialPageRoute(
@@ -54,7 +85,7 @@ class _DashbardState extends State<Dashbard> {
             color: Colors.white,
             activeColor: Colors.white,
             tabBackgroundColor: Colors.grey.shade800,
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             gap: 8,
             tabs: const [
               GButton(

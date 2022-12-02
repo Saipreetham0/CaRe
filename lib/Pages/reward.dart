@@ -23,22 +23,22 @@ class _rewardState extends State<reward> {
 
       body: Container(
         alignment: Alignment.center,
-        child: FlatButton(
-          onPressed: () {
-            scratchDialog(context);
-          },
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          shape: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide.none,
-          ),
-          color: Colors.cyan[300],
-          child: Text(
-            "Scratch Card",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-        ),
+        // child: FlatButton(
+        //   onPressed: () {
+        //     scratchDialog(context);
+        //   },
+        //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        //   shape: OutlineInputBorder(
+        //     borderRadius: BorderRadius.circular(20),
+        //     borderSide: BorderSide.none,
+        //   ),
+        //   color: Colors.cyan[300],
+        //   child: Text(
+        //     "Scratch Card",
+        //     style: TextStyle(
+        //         color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        //   ),
+        // ),
       ),
     );
   }

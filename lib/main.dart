@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
             print("Something Went Wrong");
           }
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return MaterialApp(
             title: 'Smart Dust Bin',
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
             ),
             debugShowCheckedModeBanner: false,
-            home: Splash(),
+            home: const Splash(),
           );
         });
   }
