@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:smart_dust_bin/Pages/Dashboard.dart';
 import 'package:smart_dust_bin/login/signup_page.dart';
+import 'package:smart_dust_bin/shared_componets/buttons.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -13,7 +15,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  //Password icon Obscurce text
+
   bool passwordObscureText = true;
 
   var email = "";
@@ -39,9 +41,9 @@ class _LoginPageState extends State<LoginPage> {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print("No User Found for that Email");
+        // print("No User Found for that Email");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Colors.orangeAccent,
             content: Text(
               "No User Found for that Email",
@@ -50,9 +52,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       } else if (e.code == 'wrong-password') {
-        print("Wrong Password Provided by User");
+        // print("Wrong Password Provided by User");
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Colors.orangeAccent,
             content: Text(
               "Wrong Password Provided by User",
@@ -75,6 +77,8 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  final role = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,13 +96,13 @@ class _LoginPageState extends State<LoginPage> {
                     height: 200,
                     width: 200,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
-                    children: [
+                    children: const [
                       Padding(
-                        padding: const EdgeInsets.only(left: 35.0),
+                        padding: EdgeInsets.only(left: 35.0),
                         child: Text(
                           'Hello Again! \nWelcome Back',
                           style: TextStyle(
@@ -108,14 +112,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Email',
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -135,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
@@ -151,11 +155,11 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        errorStyle:
-                            TextStyle(color: Colors.redAccent, fontSize: 15),
+                        errorStyle: const TextStyle(
+                            color: Colors.redAccent, fontSize: 15),
 
                         //errorText: 'Error message',
-                        border: OutlineInputBorder(),
+                        border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
                             passwordObscureText
@@ -171,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
 
@@ -189,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                             //   return ForgotpasswordPage();
                             // }));
                           },
-                          child: Text(
+                          child: const Text(
                             'Forgot Password?',
                             style: TextStyle(
                                 color: Colors.black,
@@ -201,59 +205,38 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: GestureDetector(
-                      onTap: // userLogin(),
-                          () {
-                        // Validate returns true if the form is valid, otherwise false.
-                        if (_formKey.currentState!.validate()) {
-                          setState(() {
-                            email = emailController.text;
-                            password = passwordController.text;
-                          });
-                          userLogin();
-                        }
-                        //userLogin();
-                      },
-                      child: Container(
-                          padding: EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                            color: Colors.blue[300],
-                            borderRadius: BorderRadius.circular(13),
-                          ),
-                          child: Center(
-                            child: Text('Sign In',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                )),
-                          )
-                          ),
-                    ),
+
+                  buttonWidget(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        setState(() {
+                          email = emailController.text;
+                          password = passwordController.text;
+                        });
+                        userLogin();
+                      }
+                    },
+                    text: 'Sign In',
                   ),
-                  SizedBox(height: 10),
+
+                  const SizedBox(height: 10),
 
                   //create a new account
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Not a Member?',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return SignUpPage();
-                          }));
+                          Get.offNamed('/signup', arguments: role);
                         },
-                        child: Text(
+                        child: const Text(
                           ' Create a New Account',
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),

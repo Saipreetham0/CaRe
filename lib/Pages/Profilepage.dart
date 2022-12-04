@@ -29,34 +29,19 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
   }
 
-  getData() {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        print('Document data: ${documentSnapshot.data()}');
-
-        name = documentSnapshot['name'];
-        email = documentSnapshot['email'];
-        phone = documentSnapshot['phone'];
-      } else {
-        // print('Document does not exist on the database');
-      }
+  Future getData() async {
+    await db.collection('users').doc(user!.uid).get().then((value) {
+      setState(() {
+        name = value['name'];
+        email = value['email'];
+        phone = value['phone'];
+      });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (user != null) {
-      urlImage = '';
-      if (user!.photoURL == null) {
-        urlImage = '';
-      } else {
-        urlImage = user!.photoURL!;
-      }
-    }
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
       body: SafeArea(
@@ -96,16 +81,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
-                            text: '${user!.displayName}',
+                            text: '${name}',
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
                             text: '\n${user!.email}',
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.black,
-                                fontSize: 18,
+                                fontSize: size.width * 0.035,
                                 fontWeight: FontWeight.normal)),
                       ])),
                     ]),

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:smart_dust_bin/Auth/auth_main.dart';
-// ignore: unused_import
-import 'package:smart_dust_bin/Pages/Dashboard.dart';
+
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get/get.dart';
+import 'package:smart_dust_bin/Pages/Dashboard.dart';
+import 'package:smart_dust_bin/Pages/LoginSPage.dart';
 import 'package:smart_dust_bin/Splash_Screen_Page.dart';
+import 'package:smart_dust_bin/login/login.dart';
+import 'package:smart_dust_bin/login/signup_page.dart';
+import 'package:smart_dust_bin/login/welcome/welcome.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,13 +31,21 @@ class MyApp extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'Smart Dust Bin',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
             debugShowCheckedModeBanner: false,
             home: const Splash(),
+            routes: {
+              '/login': (context) => LoginPage(),
+              '/signup': (context) => SignUpPage(),
+              // '/forgotpassword': (context) =>  f(),
+              '/dashboard': (context) => Dashbard(),
+              '/welcome': (context) => welcomeScreen(),
+              '/loginS': (context) => LoginS(),
+            },
           );
         });
   }

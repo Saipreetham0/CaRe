@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,7 +17,6 @@ final db = FirebaseFirestore.instance.collection('users').doc(user!.uid);
 
 @override
 void initState() {
-  print('ksp');
   //
   // db.get().then((DocumentSnapshot documentSnapshot) {
   //   if (documentSnapshot.exists) {
@@ -28,6 +26,8 @@ void initState() {
   //   }
   // });
 }
+
+getData() {}
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                         height: 50,
                       ),
                       Text(
-                        'Welcome back, \n ${user!.displayName}',
+                        'Welcome back, \n ',
                         style: const TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Container(
@@ -77,15 +77,15 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Coin Rewarded',
+                  const Text('Coin Rewarded',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold)),
-                  SizedBox(height: 20, width: 20),
+                  const SizedBox(height: 20, width: 20),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text('100',
                           style: TextStyle(
                               color: Colors.white,

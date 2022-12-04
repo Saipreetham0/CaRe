@@ -3,7 +3,6 @@ import 'dart:async';
 // ignore: unused_import
 
 import 'package:flutter/material.dart';
-
 import '../Auth/auth_main.dart';
 
 class Splash extends StatefulWidget {
@@ -25,8 +24,6 @@ class _SplashState extends State<Splash> {
 
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => AuthMainPage()));
-
-     
   }
 
   @override
@@ -44,10 +41,10 @@ class _SplashState extends State<Splash> {
               width: 200,
               height: 200,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
+            const Text(
               'C A R E',
               style: TextStyle(
                 fontSize: 35,

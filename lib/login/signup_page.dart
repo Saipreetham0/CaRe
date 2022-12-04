@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smart_dust_bin/Pages/Dashboard.dart';
 import 'package:smart_dust_bin/login/login.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:smart_dust_bin/shared_componets/buttons.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,6 +28,8 @@ class _SignUpPageState extends State<SignUpPage> {
   var email = "";
   var password = "";
   var confirmPassword = "";
+
+  final role = Get.arguments;
 
   // Create a text controller and use it to retrieve the current value
   // of the TextField.
@@ -122,6 +126,7 @@ class _SignUpPageState extends State<SignUpPage> {
             'name': name,
             'email': email,
             'mobile': mobile,
+            'role': role,
             //'category': _selected,
           });
         });
@@ -130,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
         //print(userCredential);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             backgroundColor: Color.fromARGB(255, 0, 0, 0),
             content: Text(
               "Registered Successfully.",
@@ -148,9 +153,8 @@ class _SignUpPageState extends State<SignUpPage> {
         navigationHomeScreen();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
-          print("Password Provided is too Weak");
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
                 "Password Provided is too Weak",
@@ -159,9 +163,8 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           );
         } else if (e.code == 'email-already-in-use') {
-          print("Account Already exists");
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
+            const SnackBar(
               backgroundColor: Colors.orangeAccent,
               content: Text(
                 "Account Already exists",
@@ -172,9 +175,8 @@ class _SignUpPageState extends State<SignUpPage> {
         }
       }
     } else {
-      print("Password and Confirm Password doesn't match");
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           backgroundColor: Colors.orangeAccent,
           content: Text(
             "Password and Confirm Password doesn't match",
@@ -184,10 +186,6 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     }
   }
-
-  //drop down button
-  // final _categoryList = [" ", "Student", "Startup", "Teacher", "Alumin"];
-  // String? _selected = "";
 
   @override
   Widget build(BuildContext context) {
@@ -252,9 +250,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       border: OutlineInputBorder(),
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
-                      // suffixIcon: Icon(
-                      //   Icons.error,
-                      // ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -266,7 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 //mobile number
@@ -274,16 +269,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextFormField(
                     controller: mobileController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Mobile Number',
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                       //errorText: 'Error message',
                       border: OutlineInputBorder(),
-
-                      // suffixIcon: Icon(
-                      //   Icons.error,
-                      // ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -293,53 +284,10 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
 
-                // drop down button
-
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 25),
-                //   child: DropdownButtonFormField(
-                //     value: _categoryList[0],
-
-                //     validator: (value) {
-                //       if (value == null || value == " ") {
-                //         return 'Please Select Category';
-                //       }
-                //       return null;
-                //     },
-                //     items: _categoryList
-                //         .map((e) => DropdownMenuItem(
-                //               child: Text(e),
-                //               value: e,
-                //             ))
-                //         .toList(),
-                //     onChanged: (val) {
-                //       setState(() {
-                //         _selected = val.toString();
-                //       });
-                //     },
-
-                //     icon: const Icon(
-                //       Icons.arrow_drop_down,
-                //       color: Colors.black,
-                //     ),
-                //     // dropdownColor: Colors.black,
-                //     decoration: InputDecoration(
-                //       labelText: "Category",
-                //       errorStyle:
-                //           TextStyle(color: Colors.redAccent, fontSize: 15),
-
-                //       // border: OutlineInputBorder(),
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // //password text controller
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: TextFormField(
@@ -349,9 +297,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       labelText: 'Password',
 
                       //errorText: 'Error message',
-                      border: OutlineInputBorder(),
-                      errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                      border: const OutlineInputBorder(),
+                      errorStyle: const TextStyle(
+                          color: Colors.redAccent, fontSize: 15),
 
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -374,7 +322,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 //confirm text controller
@@ -389,7 +337,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       }
                       return null;
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Confirm Password',
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -402,7 +350,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Padding(
@@ -412,8 +360,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            'By Signing up, you\’re agree to our ',
+                          const Text(
+                            'By Signing up, you\'re agree to our ',
                             style: TextStyle(
                               fontSize: 14,
                             ),
@@ -430,7 +378,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 print("Can't launch $url");
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               'Terms & Conditions',
                               style: TextStyle(
                                   color: Colors.black,
@@ -456,7 +404,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 print("Can't launch $url");
                               }
                             },
-                            child: Text(
+                            child: const Text(
                               'Privacy Policy',
                               style: TextStyle(
                                   color: Colors.black,
@@ -470,13 +418,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: GestureDetector(
-                    onTap: () {
+
+                buttonWidget(
+                    text: 'Sign Up',
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         setState(() {
                           email = emailController.text;
@@ -487,30 +435,45 @@ class _SignUpPageState extends State<SignUpPage> {
                         });
                         registration();
                       }
-                    },
-                    child: Container(
-                        padding: EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.blue[300],
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Center(
-                          child: Text('Sign Up',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              )),
-                        )),
-                  ),
-                ),
-                SizedBox(
+                    }),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                //   child: GestureDetector(
+                //     onTap: () {
+                //       if (_formKey.currentState!.validate()) {
+                //         setState(() {
+                //           email = emailController.text;
+                //           name = nameController.text;
+                //           mobile = mobileController.text;
+                //           password = passwordController.text;
+                //           confirmPassword = confirmPasswordController.text;
+                //         });
+                //         registration();
+                //       }
+                //     },
+                //     child: Container(
+                //         padding: const EdgeInsets.all(20),
+                //         decoration: BoxDecoration(
+                //           color: Colors.blue[300],
+                //           borderRadius: BorderRadius.circular(15),
+                //         ),
+                //         child: const Center(
+                //           child: Text('Sign Up',
+                //               style: TextStyle(
+                //                 color: Colors.white,
+                //                 fontWeight: FontWeight.bold,
+                //                 fontSize: 18,
+                //               )),
+                //         )),
+                //   ),
+                // ),
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Joined Us Before?',
                       style: TextStyle(),
                     ),
@@ -521,7 +484,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           return LoginPage();
                         }));
                       },
-                      child: Text(
+                      child: const Text(
                         ' Login',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold),
